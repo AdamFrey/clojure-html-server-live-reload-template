@@ -1,33 +1,21 @@
 (ns {{top/ns}}.{{main/ns}}
     (:require
      [hiccup2.core :as h]
+     [nextjournal.beholder :as beholder]
      [org.httpkit.server :as http-kit]
      [reitit.ring :as reitit.ring]
      [ring.middleware.resource :as ring.resource]))
 
 (defonce *server (atom nil))
 (defonce *channels (atom #{}))
-
-;; (defn- ws-connect! [channel]
-;;  (println "channel open")
-;;  (swap! *channels conj channel))
-
-;; (defn- ws-disconnect! [channel status]
-;;  (println "channel closed:" status)
-;;  (swap! *channels disj channel))
-
-;; (defn- ws-notify! [msg]
-;;   (doseq [channel @*channels]
-;;     (http-kit/send! channel msg)))
+(defonce *file-watcher (atom nil))
 
 (defn- ws-handler
   [request]
   (http-kit/as-channel request
     {:on-open  (fn [channel]
-                 (println "channel open")
                  (swap! *channels conj channel))
-     :on-close (fn [channel status]
-                 (println "channel closed:" status)
+     :on-close (fn [channel _status]
                  (swap! *channels disj channel))}))
 
 (defn html-index [request]
@@ -42,10 +30,6 @@
               [:body
                [:span "Hello World"]]]))})
 
-(defn wrap [handler id]
-  (fn [request]
-    (update (handler request) :wrap (fnil conj '()) id)))
-
 (def router
   (reitit.ring/router
     [["/" {:get html-index}]
@@ -55,18 +39,27 @@
   (-> (reitit.ring/ring-handler router)
       (ring.resource/wrap-resource "public")))
 
+(defn- notify-reload!
+  [& _args]
+  (doseq [ch @*channels]
+    (http-kit/send! ch "reload")))
+
 (defn -main
   [& args]
-  (println "Starting server at localhost:3000")
-  (when-not @*server
-    (reset! *server
-      (http-kit/run-server #'handler
-        {:port 3000
-         :join? true}))))
 
-;; reload all clients on re-eval
-(doseq [ch @*channels]
-  (http-kit/send! (first @*channels) "reload"))
+  (swap! *server
+    #(or %
+         (do
+           (println "Starting server at localhost:3000")
+           (http-kit/run-server #'handler
+             {:port 3000
+              :join? true}))))
+  (swap! *file-watcher
+    #(or %
+         (beholder/watch notify-reload! "resources"))))
+
+(notify-reload!)
 
 (comment
-  (-main))
+  (-main)
+  )
