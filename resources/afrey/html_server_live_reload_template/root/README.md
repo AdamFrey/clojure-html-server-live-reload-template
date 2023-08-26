@@ -4,8 +4,19 @@
 
 ## Usage
 
-Run Jetty Server: `clj -M -m {{top/ns}}.{{main/ns}}`
-Then visit `localhost:3000`
+- Connect a REPL
+- navigate to `{{top/ns}}.{{main/ns}}`
+- evaluate the whole namespace
+- eval `(start!)`
+- visit `localhost:3000`
+
+### To modify and reload HTML
+- visit the `views.*`namespace
+- Modify hiccup forms
+- re-eval the namespace
+
+### To modify and reload CSS
+- modify CSS file and save
 
 ## License
 

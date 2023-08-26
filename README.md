@@ -10,17 +10,19 @@ browser when your clojure code is re-evaluated or your CSS files are saved.
 ## Usage
 
 This is a template project for use with [deps-new](https://github.com/seancorfield/deps-new).
-As originally generated, it will produce a new library project when run:
 
-    $ clojure -Sdeps '{:deps {net.clojars.mycorp/template.interface.html {:local/root "."}}}' -Tnew create :template mycorp/template.interface.html :name myusername/mycoollib
-
-Assuming you have installed `deps-new` as your `new` "tool" via:
+To use it first make sure you have installed `deps-new` as your `new` "tool" via:
 
 ```bash
 clojure -Ttools install io.github.seancorfield/deps-new '{:git/tag "v0.4.13"}' :as new
 ```
 
-> Note: once the template has been published (to a public git repo), the invocation will be the same, except the `:local/root` dependency will be replaced by a git or Maven-like coordinate.
+Then run:
+
+``` bash
+    $ clojure -Sdeps '{:deps {net.clojars.afrey/html-server-live-reload-template {:mv/version "VERSION"}}}' -Tnew create :template afrey/html_server_live_reload_template :name yourcorp/app-name
+```
+
 
 ## License
 

@@ -1,12 +1,46 @@
 (ns build
   (:refer-clojure :exclude [test])
-  (:require [clojure.tools.build.api :as b] ; for b/git-count-revs
-            [org.corfield.build :as bb]))
+  (:require
+   [clojure.java.shell :as sh]
+   [clojure.tools.build.api :as b]
+   [deps-deploy.deps-deploy :as deploy]))
 
-(def lib 'net.clojars.mycorp/template.interface.html)
-(def version "0.1.0-SNAPSHOT")
-#_ ; alternatively, use MAJOR.MINOR.COMMITS:
-(def version (format "1.0.%s" (b/git-count-revs nil)))
+(def lib 'org.clojars.afrey/html-server-live-reload-template)
 
-(defn test "Run the tests." [opts]
-  (bb/run-tests opts))
+(defn version
+  []
+  (str (b/git-count-revs nil)
+       "."
+       (re-find #"\w+" (:out (sh/sh "git" "rev-parse" "--short" "HEAD")))))
+
+(def -version (version))
+
+(def class-dir "target/classes")
+(def basis (b/create-basis {:project "deps.edn"}))
+(def jar-file (format "target/%s-%s.jar" (name lib) -version))
+
+(defn clean [_]
+  (b/delete {:path "target"}))
+
+(defn jar [_]
+  (clean nil)
+  (b/write-pom {:class-dir class-dir
+                :lib lib
+                :version -version
+                :basis basis
+                :src-dirs ["src"]})
+  (b/copy-dir {:src-dirs ["src" "resources"]
+               :target-dir class-dir})
+  (b/jar {:class-dir class-dir
+          :jar-file jar-file}))
+
+(defn deploy [_]
+  (deploy/deploy {:artifact       jar-file
+                  :installer      :local
+                  :pom-file       (str class-dir "/META-INF/maven/" lib "/pom.xml")
+                  :sign-releases? false}))
+
+(comment
+  (jar nil)
+  (deploy nil)
+  )

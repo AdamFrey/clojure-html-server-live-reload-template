@@ -1,6 +1,5 @@
-{:developer "Adam Frey"
- :transform
+{:transform
  [["src" "src/{{top/file}}"
    {"main.clj"       "{{main/file}}.clj"
     "reload.clj"     "{{main/file}}/reload.clj"
-    "views_home.clj" "{{main/file}}/views/home.clj"}]]}
+    "views_home.clj"  "{{main/file}}/views/home.clj"}]]}
