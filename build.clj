@@ -25,14 +25,15 @@
 (defn jar [_]
   (clean nil)
   (b/write-pom {:class-dir class-dir
-                :lib lib
-                :version -version
-                :basis basis
-                :src-dirs ["src"]})
-  (b/copy-dir {:src-dirs ["src" "resources"]
+                :lib       lib
+                :version   -version
+                :scm       {:url "https://github.com/AdamFrey/clojure-html-server-live-reload-template"}
+                :basis     basis
+                :src-dirs  ["src"]})
+  (b/copy-dir {:src-dirs   ["src" "resources"]
                :target-dir class-dir})
   (b/jar {:class-dir class-dir
-          :jar-file jar-file}))
+          :jar-file  jar-file}))
 
 (defn deploy [_]
   (deploy/deploy {:artifact       jar-file
