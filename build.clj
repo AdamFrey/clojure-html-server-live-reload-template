@@ -36,7 +36,7 @@
 
 (defn deploy [_]
   (deploy/deploy {:artifact       jar-file
-                  :installer      :local
+                  :installer      :remote
                   :pom-file       (str class-dir "/META-INF/maven/" lib "/pom.xml")
                   :sign-releases? false}))
 

@@ -20,7 +20,7 @@ clojure -Ttools install io.github.seancorfield/deps-new '{:git/tag "v0.4.13"}' :
 Then run:
 
 ``` bash
-    $ clojure -Sdeps '{:deps {net.clojars.afrey/html-server-live-reload-template {:mv/version "VERSION"}}}' -Tnew create :template afrey/html_server_live_reload_template :name yourcorp/app-name
+    $ clojure -Sdeps '{:deps {net.clojars.afrey/html-server-live-reload-template {:mv/version "6.bec52da"}}}' -Tnew create :template afrey/html_server_live_reload_template :name yourcorp/app-name
 ```
 
 
