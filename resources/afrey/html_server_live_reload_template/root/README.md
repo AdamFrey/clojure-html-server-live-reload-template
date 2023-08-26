@@ -7,15 +7,6 @@
 Run Jetty Server: `clj -M -m {{top/ns}}.{{main/ns}}`
 Then visit `localhost:3000`
 
-Invoke a library API function from the command-line:
-
-    $ clojure -X {{top/ns}}.{{main/ns}}/foo :a 1 :b '"two"'
-    {:a 1, :b "two"} "Hello, World!"
-
-Run the project's tests (they'll fail until you edit them):
-
-    $ clojure -T:build test
-
 ## License
 
 Copyright © {{now/year}} {{developer}}

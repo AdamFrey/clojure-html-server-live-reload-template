@@ -1,4 +1,5 @@
-{:transform
+{:developer "Adam Frey"
+ :transform
  [["src" "src/{{top/file}}"
    {"main.clj"       "{{main/file}}.clj"
     "reload.clj"     "{{main/file}}/reload.clj"
