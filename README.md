@@ -2,9 +2,9 @@
 
 Automatic reload for Clojure server rendered HTML.
 
-This template will generate a minimal starting point for a clojure server that
-serves HTML (created from Hiccup) and CSS files and will have your browser
-perform a Figwheel/Shadow-like live reload without the need to tab over to your
+This template will generate starting-point code for a clojure server that serves
+Hiccup-based HTML and CSS with live reload functionality. Your browser tab will
+perform a Figwheel/Shadow-like live reload with no need to change focus over to your
 browser when your clojure code is re-evaluated or your CSS files are saved.
 
 ## Usage
