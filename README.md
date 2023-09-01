@@ -17,7 +17,7 @@ To use it first make sure you have installed `deps-new` as your `new` "tool" via
 clojure -Ttools install io.github.seancorfield/deps-new '{:git/tag "v0.4.13"}' :as new
 ```
 
-Then run:
+Then replace `yourcorp/app-name` with your desired application name and run:
 
 ``` bash
     $ clojure -Sdeps '{:deps {net.clojars.afrey/html-server-live-reload-template {:mv/version "6.bec52da"}}}' -Tnew create :template afrey/html_server_live_reload_template :name yourcorp/app-name
