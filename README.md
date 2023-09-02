@@ -30,7 +30,7 @@ Next, open up the `README.md` file in the newly created project for more informa
 
 ## Alternatives
 
-- [panas.reload](https://github.com/keychera/panas.reload) appears to meet a similar goal, uses babashka
+- [panas.reload](https://github.com/keychera/panas.reload) appears to aim for a similar goal, uses babashka
 
 ## License
 
