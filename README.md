@@ -23,7 +23,7 @@ clojure -Ttools install io.github.seancorfield/deps-new '{:git/tag "v0.4.13"}' :
 Then replace `yourcorp/app-name` with your desired application name and run:
 
 ``` bash
-    $ clojure -Sdeps '{:deps {net.clojars.afrey/html-server-live-reload-template {:mvn/version "6.bec52da"}}}' -Tnew create :template afrey/html_server_live_reload_template :name yourcorp/app-name
+    $ clojure -Sdeps '{:deps {io.github.adamfrey/clojure-html-server-live-reload-template {:git/sha "4bc908f5d601e2ba24c477f7bc123e83f89635a3"}}}' -Tnew create :template afrey/html_server_live_reload_template :name me/the-thing
 ```
 
 Next, open up the `README.md` file in the newly created project for more information on usage.
