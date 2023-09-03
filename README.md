@@ -3,6 +3,8 @@
 Automatic browser live reload for Clojure server rendered HTML. A
 Figwheel/shadow style experience, but without ClojureScript.
 
+Note that this functionality can also be achieved with the [ring-refresh](https://github.com/weavejester/ring-refresh) library which I wasn't aware of when I first published this project. See note in [alternatives](#Alternatives).
+
 This template will generate a starting-point project for a clojure server that
 serves Hiccup-based HTML and CSS with live reload functionality. Your browser
 tab will reload automatically when you re-evaluate the namespaces with your
@@ -30,6 +32,7 @@ Next, open up the `README.md` file in the newly created project for more informa
 
 ## Alternatives
 
+- [ring-refresh](https://github.com/weavejester/ring-refresh) - `ring-refresh` has been around for much longer and is quite arguably a more elegant middleware-based approach to the problem. `ring-refresh` uses timeouts instead of websockets for reload notifications. 
 - [panas.reload](https://github.com/keychera/panas.reload) appears to aim for a similar goal, uses babashka
 
 ## License
