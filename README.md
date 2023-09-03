@@ -32,7 +32,7 @@ Next, open up the `README.md` file in the newly created project for more informa
 
 ## Alternatives
 
-- [ring-refresh](https://github.com/weavejester/ring-refresh) - `ring-refresh` has been around for much longer and is quite arguably a more elegant middleware-based approach to the problem. `ring-refresh` uses timeouts instead of websockets for reload notifications. 
+- [ring-refresh](https://github.com/weavejester/ring-refresh) - has been around for much longer than this project and is quite arguably a more elegant middleware-based approach to the problem. `ring-refresh` uses timeouts instead of websockets for reload notifications. 
 - [panas.reload](https://github.com/keychera/panas.reload) appears to aim for a similar goal, uses babashka
 
 ## License
